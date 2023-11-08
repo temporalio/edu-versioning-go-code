@@ -1,4 +1,4 @@
-# Exercise #1: Version the Change with the `GetVersion` API
+# Exercise 1: Version the Change with the `GetVersion` API
 
 During this exercise, you will 
 
@@ -25,12 +25,13 @@ the complete version in the `solution` subdirectory.
    should complete within 30 seconds.
 4. You will now download the history of this execution in JSON 
    format so that you can replay it in an automated test that 
-   you will develop later in this exercise. Open the Web UI, 
-   navigate to the detail page for this execution, and then click 
-   the **Download** button that appears on the right side of the 
-   page, just above the table showing the Event History.
-   Save the file as `history_for_original_execution.json` in your 
-   `practice` directory.
+   you will develop later in this exercise. Open the Web UI (if
+   you are running a local dev cluster, it will be running at
+   http://localhost:8233), navigate to the detail page for this
+   execution, and then click  the **Download** button that appears
+   on the right side of the  page, just above the table showing the
+   Event History. Save the file as
+   `history_for_original_execution.json` in your `practice` directory.
    * NOTE: If you are running this exercise in GitPod, you may 
      be unable to download the file, due to the embedded browser
 	 used in that environment. In this case, run the following 

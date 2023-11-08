@@ -1,0 +1,6 @@
+frontend.workerVersioningDataAPIs:
+  - value: true
+frontend.workerVersioningWorkflowAPIs:
+  - value: true
+worker.buildIdScavengerEnabled:
+  - value: true
