@@ -80,7 +80,7 @@ the Event History.
    "Workers" UI tab to see the registered Workers and their versions.
    You may notice that there is a "Retirability" field listed in the
    Workers table of your Task Queue, and only your new, versioned
-   Worked is listed as not retireable.
+   Worker is listed as not retireable.
 4. To retrieve the same information programmatically from the CLI, run
    `temporal task-queue get-build-ids --task-queue pizza-tasks`. You
    should receive output similar to this:
@@ -112,9 +112,8 @@ the Event History.
 
 ## Part D: Add Another Worker Using Version Sets
 
-1. Add a more complicated compatible set and another worker
-2. Verify Polling via CLI again
-3. Click on the "Run Id" for your Workflow and then click on the Task Queue name to view active "Pollers" registered to handle these Tasks.
+1. Lastly, you'll experiment with Version Sets. Edit the
+   `worker/main.go` file again...
 
 
 ### This is the end of the exercise.
