@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	pizza "temporal102/exercises/debug-activity/solution"
+	pizza "temporal-versioning/exercises/worker-versioning/practice"
 
 	"go.temporal.io/sdk/client"
 )
@@ -17,10 +17,10 @@ func main() {
 	}
 	defer c.Close()
 
-	// Part B: call c.UpdateWorkerBuildIdCompatibility() to inform the Task Queue
-	// of your Build ID. You can also do this via the CLI if you are changing a
-	// currently running workflow. An example of how to do it via the SDK is below.
-	// Don't forget to change the BuildID to match your Worker.
+	// TODO Part B: call c.UpdateWorkerBuildIdCompatibility() to inform the Task
+	// Queue of your Build ID. You can also do this via the CLI if you are changing
+	// a currently running workflow. An example of how to do it via the SDK is
+	// below. Don't forget to change the BuildID to match your Worker.
 	//
 	// c.UpdateWorkerBuildIdCompatibility(context.Background(), &client.UpdateWorkerBuildIdCompatibilityOptions{
 	// 	TaskQueue: pizza.TaskQueueName,

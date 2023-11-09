@@ -57,8 +57,6 @@ the Event History.
 	 --print_full > history_for_original_execution.json` to 
 	 retrieve a copy. 
 
-// change directories or terminating running workers?
-
 
 ## Part B: Assign a Build ID to your Worker and Task Queue
 
@@ -70,26 +68,53 @@ the Event History.
 2. Edit the `start/main.go` file to call
    `client.UpdateWorkerBuildIdCompatibility()` before starting your
    Workflow.
-3. Re-run the whole thing
-4. See if it changed?
-5. Promote to Default using CLI
-6. Re-run again?
+3. Run a new version of your worker by running `go run worker/main.go`
+   in a new terminal window. You do not need to terminate your old
+   worker. If you restart your workflow by running
+   `go run start/main.go` again, you should see some output from the
+   terminal window of your new worker. This indicates that the workflow
+   was chosen and run by the new, versioned worker, and the unversioned
+   worker was ignored. You can also verify this by visiting the Web UI
+   again. Nothing will have changed in the business logic of your
+   Workflow, but you can examine the `pizza-tasks` Task Queue or the
+   "Workers" UI tab to see the registered Workers and their versions.
+   You may notice that there is a "Retirability" field listed in the
+   Workers table of your Task Queue, and only your new, versioned
+   Worked is listed as not retireable.
+4. To retrieve the same information programmatically from the CLI, run
+   `temporal task-queue get-build-ids --task-queue pizza-tasks`. You
+   should receive output similar to this:
+   ```output
+         BuildIds        DefaultForSet   IsDefaultSet
+     [revision-yymmdd]  revision-yymmdd  true
+   ```
 
 
+## Part C: Decommission Your Old Worker
 
-## Part C: Add Another Worker Using Version Sets
+1. Now that you have a new, versioned Worker running, you probably
+   aren't planning on submitting any more Workflows to your old,
+   unversioned Worker. However, it's important to make sure that your
+   old Worker isn't still handling any Workflows -- and that it has
+   a ready replacement -- before decommissioning it. There are a
+   few ways of verifying this, using the CLI and the Web UI. The
+   "Retirability" field you saw in the last step is one.
+2. Run `temporal task-queue describe --task-queue pizza-tasks`. Both
+   of your running Workers should report in, as they are continuing to
+   poll despite not receiving any more Workflows:
+   ```output
+       Identity     LastAccessTime  RatePerSecond
+     30404@Omelas@  39 seconds ago         100000
+     8692@Omelas@   40 seconds ago         100000
+   ```
+3. Can you get Retirability from the CLI?
+
+
+## Part D: Add Another Worker Using Version Sets
 
 1. Add a more complicated compatible set and another worker
-2. Do I need to keep a workflow running all this time? Does someone really love pizza?
-3. Verify Polling via CLI (within 5 minutes): temporal task-queue describe --task-queue=MyTaskQueue --task-queue-type="workflow"
-4. Click on the "Run Id" for your Workflow and then click on the Task Queue name to view active "Pollers" registered to handle these Tasks.
-
-
-## Part D: Decommission Your Old Worker
-
-1.  Verify whether Build ID is reachable: temporal task-queue get-build-id-reachability --build-id "2.0"
-2.  Decommission old worker
-3.  Does Event History get used at all here?
+2. Verify Polling via CLI again
+3. Click on the "Run Id" for your Workflow and then click on the Task Queue name to view active "Pollers" registered to handle these Tasks.
 
 
 ### This is the end of the exercise.

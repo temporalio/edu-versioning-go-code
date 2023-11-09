@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	pizza "temporal102/exercises/debug-activity/solution"
+	pizza "temporal-versioning/exercises/worker-versioning/practice"
 
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/worker"
@@ -15,7 +15,7 @@ func main() {
 	}
 	defer c.Close()
 
-	// Part B: Change your worker.New() call to use a struct, workerOptions,
+	// TODO Part B: Change your worker.New() call to use a struct, workerOptions,
 	// that contains the options `BuildID` and `UseBuildIDForVersioning: true`.
 
 	w := worker.New(c, pizza.TaskQueueName, worker.Options{})
