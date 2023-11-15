@@ -148,10 +148,11 @@ the Event History.
 3. Lastly, you can now deploy a new Worker, identified by this new Build ID,
    and it will be able to process the same Workflows. Although you would
    ordinarily do this when making code changes, you can do it without changing
-   anything for the sake of this example. Change the `BuildID` field from your
-   `worker.Options{}` declaration and restart your Worker once again, then
-   re-run your Workflow starter. You should observe that both Worker Build IDs
-   are compatible and able to process the Workflow.
+   anything for the sake of this example. Update the `BuildID` field from your
+   `worker.Options{}` declaration to reflect the new `revision-yymmdd+1`
+   Versiom and restart your Worker once again, then re-run your Workflow
+   starter. You should observe that both Worker Build IDs are compatible and
+   able to process the Workflow.
 
 
 ### This is the end of the exercise.
