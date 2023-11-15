@@ -29,18 +29,6 @@ func main() {
 	// 	},
 	// })
 
-	// TODO Part D: call c.UpdateWorkerBuildIdCompatibility() again to add another
-	// compatible Build ID to the same Task Queue. This can be done if you are
-	// making backwards-compatible changes to your Workers.
-	//
-	// c.UpdateWorkerBuildIdCompatibility(context.Background(), &client.UpdateWorkerBuildIdCompatibilityOptions{
-	// 	TaskQueue: pizza.TaskQueueName,
-	// 	Operation: &client.BuildIDOpAddNewCompatibleVersion{
-	// 		BuildID:                   "revision-yymmdd+1",
-	// 		ExistingCompatibleBuildId: "revision-yymmdd",
-	// 	},
-	// })
-
 	order := *createPizzaOrder()
 
 	workflowID := fmt.Sprintf("pizza-workflow-order-%s", order.OrderNumber)

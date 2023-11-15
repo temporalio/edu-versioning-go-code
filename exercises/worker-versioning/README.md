@@ -112,8 +112,46 @@ the Event History.
 
 ## Part D: Add Another Worker Using Version Sets
 
-1. Lastly, you'll experiment with Version Sets. Edit the
-   `worker/main.go` file again...
+1. Lastly, you'll experiment with Version Sets using the CLI rather
+   than the SDK. In Part B, you used
+   `client.UpdateWorkerBuildIdCompatibility()` to update your Task
+   Queue with new a Worker Version. You can accomplish the same
+   thing by running `temporal task-queue update-build-ids` with
+   matching parameters.
+2. Assume you are adding another new Worker Version that is compatible with the
+   Version that you added in Part B. To do this, try running:
+
+   ```shell
+   temporal task-queue update-build-ids add-new-compatible \
+      --build-id="revision-yymmdd+1" \
+      --existing-compatible-build-id="revision-yymmdd" \
+      --task-queue="pizza-tasks"
+   ```
+
+   This will add `revision-yymmdd+1` as another compatible Build ID to the same
+	Task Queue. This is equivalent to running the following SDK code:
+
+   ```go
+   c.UpdateWorkerBuildIdCompatibility(context.Background(), &client.UpdateWorkerBuildIdCompatibilityOptions{
+		TaskQueue: pizza.TaskQueueName,
+		Operation: &client.BuildIDOpAddNewCompatibleVersion{
+			BuildID:                   "revision-yymmdd+1",
+			ExistingCompatibleBuildId: "revision-yymmdd",
+		},
+	})
+   ```
+
+   (The `pizza.TaskQueueName` variable is stored in `shared.go`.)
+
+   In practice, you should find this at least as useful as updating your
+   Task Queues from the SDK.
+3. Lastly, you can now deploy a new Worker, identified by this new Build ID,
+   and it will be able to process the same Workflows. Although you would
+   ordinarily do this when making code changes, you can do it without changing
+   anything for the sake of this example. Change the `BuildID` field from your
+   `worker.Options{}` declaration and restart your Worker once again, then
+   re-run your Workflow starter. You should observe that both Worker Build IDs
+   are compatible and able to process the Workflow.
 
 
 ### This is the end of the exercise.
