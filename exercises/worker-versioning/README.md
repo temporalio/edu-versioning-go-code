@@ -2,7 +2,6 @@
 
 During this exercise, you will
 
-* Run a Workflow Execution and retrieve the Event History.
 * Define Worker Build ID Version Sets and enable Versioning on your Worker.
 * Make a change to your Workflow, and redeploy an updated Worker.
 * Ensure that your Workflows have switched to using the new code path.
@@ -32,41 +31,7 @@ the code). If you need a hint or want to verify your changes, look at
 the complete version in the `solution` subdirectory.
 
 
-## Part A: Run a Workflow to Completion
-
-This exercise's `practice` directory contains a fully working
-example to start, which does not yet use Worker Versioning.
-You can run the Workflow without any changes to retrieve a copy of
-the Event History.
-
-1. Run `go run worker/main.go` in a terminal to start a Worker
-2. Run `go run start/main.go` in another terminal. This will 
-   process a pizza delivery order for a hypothetical customer
-   whose address and details are in `start/main.go`.
-3. Let this Workflow run to completion. Because this is an example
-   and does not actually order any real pizzas, it should complete
-   almost instantly.
-4. As in Exercise 1, you will now download the history of this
-   execution in JSON format. Open the Web UI (if you are running
-   a local dev cluster, it will be running at http://localhost:8233),
-   navigate to the detail page for this execution, and then click
-   the **Download** button that appears on the right side of the page,
-   just above the table showing the Event History. Save the file as
-   `history_for_original_execution.json` in your `practice` directory.
-   * NOTE: If you are running this exercise in GitPod, you may 
-     be unable to download the file, due to the embedded browser
-	 used in that environment. In this case, you can retrieve a 
-	 copy of this Event History by running the following command 
-	 from the `practice`  directory:
-
-```shell
-temporal workflow show \
-    --workflow-id loan-processing-workflow-customer-a100 \
-    --fields long \
-     --output json > history_for_original_execution.json
-```
-
-## Part B: Assign a Build ID to your Worker and Task Queue
+## Part A: Assign a Build ID to your Worker and Task Queue
 
 1. Edit the `worker/main.go` file to add a Build ID to your Worker
    and opt in to Worker Versioning. To do this, replace the empty
@@ -98,7 +63,7 @@ temporal workflow show \
    ```
 
 
-## Part C: Decommission Your Old Worker
+## Part B: Decommission Your Old Worker
 
 1. Now that you have a new, versioned Worker running, you probably
    aren't planning on submitting any more Workflows to your old,
@@ -118,16 +83,16 @@ temporal workflow show \
 3. Can you get Retirability from the CLI?
 
 
-## Part D: Add Another Worker Using Version Sets
+## Part C: Add Another Worker Using Version Sets
 
 1. Lastly, you'll experiment with Version Sets using the CLI rather
-   than the SDK. In Part B, you used
+   than the SDK. In Part A, you used
    `client.UpdateWorkerBuildIdCompatibility()` to update your Task
    Queue with new a Worker Version. You can accomplish the same
    thing by running `temporal task-queue update-build-ids` with
    matching parameters.
 2. Assume you are adding another new Worker Version that is compatible with the
-   Version that you added in Part B. To do this, try running:
+   Version that you added in Part A. To do this, try running:
 
    ```shell
    temporal task-queue update-build-ids add-new-compatible \
