@@ -10,6 +10,7 @@ tasks:
     init: |
       curl -sSf https://temporal.download/cli.sh | sh -s - --dir /workspace
     command: |
+      echo "waiting for server...."
       gp ports await 7233 && gp ports await 8080 && sleep 25 && gp preview $(gp url 8080)
       clear
       echo "Use this terminal to start your worker."
