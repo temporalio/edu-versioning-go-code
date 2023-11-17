@@ -114,7 +114,7 @@ the complete version in the `solution` subdirectory.
 	})
    ```
 
-   (The `pizza.TaskQueueName` variable is stored in `shared.go`.)
+   (`pizza.TaskQueueName` refers to a constant defined in `shared.go`.)
 
    In practice, you should find this at least as useful as updating your
    Task Queues from the SDK.
