@@ -8,12 +8,8 @@ tasks:
     init: go get -v -t -d ./...
   - name: Worker
     init: |
-      pushd temporal-server
-      docker-compose pull
-      popd
+      curl -sSf https://temporal.download/cli.sh | sh -s - --dir /workspace
     command: |
-      gp sync-done dockerpull
-      echo "waiting for server...."
       gp ports await 7233 && gp ports await 8080 && sleep 25 && gp preview $(gp url 8080)
       clear
       echo "Use this terminal to start your worker."
@@ -27,9 +23,9 @@ tasks:
     openMode: split-right
   - name: Temporal Local Development Server
     command: |
-      gp sync-await dockerpull
-      cd temporal-server
-      docker-compose up
+      source /workspace/edu-versioning-go-code/.bash_aliases
+      export TEMPORAL_CORS_ORIGINS=http://localhost:3000
+      /workspace/bin/temporal server start-dev --ui-port 8080
     openMode: tab-after
 
 ports:
@@ -42,11 +38,6 @@ ports:
   - name: Temporal Web UI v2
     port: 8080 # temporal UI
     description: New (v2) Temporal Web UI
-    onOpen: ignore
-    visibility: private
-  - name: Translation Service
-    description: Local microservice used in exercises
-    port: 9998
     onOpen: ignore
     visibility: private
 
