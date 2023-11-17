@@ -55,12 +55,16 @@ the Event History.
    `history_for_original_execution.json` in your `practice` directory.
    * NOTE: If you are running this exercise in GitPod, you may 
      be unable to download the file, due to the embedded browser
-	 used in that environment. In this case, run the following 
-	 command from the `practice`  directory `tctl wf show 
-	 --workflow_id loan-processing-workflow-customer-a100 
-	 --print_full > history_for_original_execution.json` to 
-	 retrieve a copy. 
+	 used in that environment. In this case, you can retrieve a 
+	 copy of this Event History by running the following command 
+	 from the `practice`  directory:
 
+```shell
+temporal workflow show \
+    --workflow-id loan-processing-workflow-customer-a100 \
+    --fields long \
+     --output json > history_for_original_execution.json
+```
 
 ## Part B: Assign a Build ID to your Worker and Task Queue
 
