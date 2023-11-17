@@ -8,9 +8,10 @@ During this exercise, you will
 * Ensure that your Workflows have switched to using the new code path.
 * Decommission an old Worker.
 
-If you are running this Exercise using a local dev server, you will need to
-enable Worker Versioning on server startup, as it is not enabled by default.
-To do this, run `temporal server start dev` with additional parameters:
+If you are running this exercise locally with a Temporal Cluster that 
+you started via the `temporal server start-dev` command, you must
+restart it using some additional parameters that will enable the 
+Worker Versioning feature:
 
 ```shell
 temporal server start-dev \
@@ -18,6 +19,9 @@ temporal server start-dev \
    --dynamic-config-value frontend.workerVersioningWorkflowAPIs=true \
    --dynamic-config-value worker.buildIdScavengerEnabled=true
 ```
+
+The above step is not necessary if you are using GitPod to run this 
+exercise.
 
 You can also provide these parameters to a cluster in a YAML file. An
 example is provided in `enable_worker_versioning.yaml`.
