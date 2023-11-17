@@ -41,22 +41,11 @@ the complete version in the `solution` subdirectory.
 2. Edit the `start/main.go` file to call
    `client.UpdateWorkerBuildIdCompatibility()` before starting your
    Workflow.
-3. Run a new version of your Worker by running `go run worker/main.go`
-   in a new terminal window. You do not need to terminate your old
-   Worker. If you restart your Workflow by running
-   `go run start/main.go` again, you should see some output from the
-   terminal window of your new Worker. This indicates that the Workflow
-   was chosen and run by the new, versioned Worker, and the unversioned
-   Worker was ignored. You can also verify this by visiting the Web UI
-   again. Nothing will have changed in the business logic of your
-   Workflow, but you can examine the `pizza-tasks` Task Queue or the
-   "Workers" UI tab to see the registered Workers and their versions.
-   You may notice that there is a "Retirability" field listed in the
-   Workers table of your Task Queue, and only your new, versioned
-   Worker is listed as not retireable.
-4. To retrieve the same information programmatically from the CLI, run
+3. Start a Worker by running `go run worker/main.go` in a new 
+   terminal window. 
+4. To retrieve the information about build IDs from the CLI, run
    `temporal task-queue get-build-ids --task-queue pizza-tasks`. You
-   should receive output similar to this:
+   should see output similar to this:
    ```output
          BuildIds        DefaultForSet   IsDefaultSet
      [revision-yymmdd]  revision-yymmdd  true
@@ -74,7 +63,7 @@ the complete version in the `solution` subdirectory.
    "Retirability" field you saw in the last step is one.
 2. Run `temporal task-queue describe --task-queue pizza-tasks`. Both
    of your running Workers should report in, as they are continuing to
-   poll despite not receiving any more Workflows:
+   poll despite not receiving any more Workflow Execution requests:
    ```output
        Identity     LastAccessTime  RatePerSecond
      30404@Omelas@  39 seconds ago         100000
