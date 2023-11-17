@@ -63,14 +63,12 @@ the complete version in the `solution` subdirectory.
    with `var notifyConfirmation string`) from just before the 
    loop to just after the loop.
 2. Save your change and exit the editor.
-3. Restart the Worker by pressing Ctrl-C in the terminal 
-   window where you started it and then running the 
-   `go run worker/main.go` command again. The change you just 
-   made to the Workflow logic takes effect immediately, although
-   the Worker immediately begins using the updated code you
-   deployed, it may take up to 90 seconds before that is 
-   evident for this Workflow Execution, due to the duration of 
-   the Timer.
+3. Restart the Worker by pressing Ctrl-C in the terminal
+   window where you started it and then running the
+   `go run worker/main.go` command again. Although the Worker
+   immediately begins using the updated code after this restart,
+   the effects of your change to the Workflow logic may not be
+   evident for up to 90 seconds due to the duration of the Timer.
 4. Refresh the detail page for this execution in the Web UI. 
    Continue to refresh the page until the non-deterministic
    error is visible.
