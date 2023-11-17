@@ -84,7 +84,7 @@ recover the state of the open execution prior to the restart. Since
 the Commands generated when replaying it with the new code did not 
 correspond to the Events that were generated when the Worker ran the 
 original code before the restart, it is unable to recover the state 
-and responds by throwing the non-deterministic error you see.
+and responds with the non-deterministic error you see.
 
 
 ## Part C: Use the Workflow Replayer to Test Compatibility
