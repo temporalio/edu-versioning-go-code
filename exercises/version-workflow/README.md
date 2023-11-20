@@ -58,19 +58,18 @@ the complete version in the `solution` subdirectory.
 1. This Workflow uses the `SendThankYouToCustomer` Activity to 
    send a thank you message to the customer before charging 
    them with the first loan payment, but this was a mistake.
-   This Activity should run after the last payment, so move the
-   five lines of code used to Activity execution (which begin 
-   with `var notifyConfirmation string`) from just before the 
-   loop to just after the loop.
+   This Activity should run after the last payment. To fix this, 
+   edit the `workflow.go` file and move the five lines of code 
+   (which begin with the `var notifyConfirmation string` statement)
+   related to that Activity from just before the loop to just
+   after it.
 2. Save your change and exit the editor.
 3. Restart the Worker by pressing Ctrl-C in the terminal 
    window where you started it and then running the 
-   `go run worker/main.go` command again. The change you just 
-   made to the Workflow logic takes effect immediately, although
-   the Worker immediately begins using the updated code you
-   deployed, it may take up to 90 seconds before that is 
-   evident for this Workflow Execution, due to the duration of 
-   the Timer.
+   `go run worker/main.go` command again. Although the Worker
+   immediately begins using the updated code after this restart, 
+   the effects of your change to the Workflow logic may not be
+   evident for up to 90 seconds due to the duration of the Timer.
 4. Refresh the detail page for this execution in the Web UI. 
    Continue to refresh the page until the non-deterministic
    error is visible.
@@ -86,7 +85,7 @@ recover the state of the open execution prior to the restart. Since
 the Commands generated when replaying it with the new code did not 
 correspond to the Events that were generated when the Worker ran the 
 original code before the restart, it is unable to recover the state 
-and responds by throwing the non-deterministic error you see.
+and responds with the non-deterministic error you see.
 
 
 ## Part C: Use the Workflow Replayer to Test Compatibility

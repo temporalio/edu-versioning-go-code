@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	loanprocess "temporal102/exercises/version-workflow/solution"
+	loanprocess "temporal-versioning/exercises/version-workflow/solution"
 
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/worker"
