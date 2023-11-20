@@ -17,7 +17,7 @@ func main() {
 	}
 	defer c.Close()
 
-	// TODO Part B: call c.UpdateWorkerBuildIdCompatibility() to inform the Task
+	// TODO Part A: call c.UpdateWorkerBuildIdCompatibility() to inform the Task
 	// Queue of your Build ID. You can also do this via the CLI if you are changing
 	// a currently running workflow. An example of how to do it via the SDK is
 	// below. Don't forget to change the BuildID to match your Worker.
