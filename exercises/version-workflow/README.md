@@ -35,10 +35,15 @@ the complete version in the `solution` subdirectory.
    * NOTE: If you are running this exercise in GitPod, you may 
      be unable to download the file, due to the embedded browser
 	 used in that environment. In this case, run the following 
-	 command from the `practice`  directory `tctl wf show 
-	 --workflow_id loan-processing-workflow-customer-a100 
-	 --print_full > history_for_original_execution.json` to 
-	 retrieve a copy. 
+	 command from the `practice`  directory:
+    
+    ```shell
+    temporal workflow show \
+      --workflow-id loan-processing-workflow-customer-a100 \
+      > history_for_original_execution.json
+   ```
+      
+   to retrieve a copy. 
 5. In the next section, you will make and deploy an incompatible 
    change, causing a non-deterministic error for an open execution.
    To allow time for you to do these things, edit the `workflow.go` 
@@ -140,20 +145,8 @@ is `1`.
    the previous execution.
 6. Restart the Worker by pressing Ctrl-C in the terminal
    window where you started it and then running the `go run
-   worker/main.go` command again.
-7. Return to the detail page for this Workflow Execution
-8. Click the downward-facing arrow to the right of the 
-   **Request Cancellation** menu near the upper-right portion of 
-   the page and select the **Reset** option.
-   * Choose **Reset to last Workflow Task** 
-   * Enter "Using versioning to fix a bad deployment" as the reason
-   * Click the **Confirm** button
-9. Follow the **here** link in the confirmation message shown
-    at the top of the screen, which points to the new Workflow 
-	Execution created when you reset the Workflow.
-10. Enable the auto-refresh feature using the toggle button near
-    the top of the page. You should find that the Workflow Execution 
-	completes successfully within the next 30 seconds.
+   worker/main.go` command again. You should find that the Workflow
+   Execution completes successfully within the next 30 seconds.
    
 
 
