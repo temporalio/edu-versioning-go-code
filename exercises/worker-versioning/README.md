@@ -22,9 +22,6 @@ temporal server start-dev \
 The above step is not necessary if you are using GitPod to run this 
 exercise.
 
-You can also provide these parameters to a cluster in a YAML file. An
-example is provided in `enable_worker_versioning.yaml`.
-
 Make your changes to the code in the `practice` subdirectory (look for 
 `TODO` comments that will guide you to where you should make changes to 
 the code). If you need a hint or want to verify your changes, look at 
@@ -41,8 +38,12 @@ the complete version in the `solution` subdirectory.
 2. Edit the `start/main.go` file to call
    `client.UpdateWorkerBuildIdCompatibility()` before starting your
    Workflow.
-3. Start a Worker by running `go run worker/main.go` in a new 
-   terminal window. 
+3. Run a new version of your worker by running `go run worker/main.go` 
+   in a new terminal window. You do not need to terminate your old
+   worker. If you restart your workflow by running `go run start/main.go`
+   again, you should see some output from the terminal window of your
+   new worker. This indicates that the workflow was chosen and run by
+   the new, versioned worker, and the unversioned worker was ignored.
 4. To retrieve the information about build IDs from the CLI, run
    `temporal task-queue get-build-ids --task-queue pizza-tasks`. You
    should see output similar to this:
@@ -69,7 +70,21 @@ the complete version in the `solution` subdirectory.
      30404@Omelas@  39 seconds ago         100000
      8692@Omelas@   40 seconds ago         100000
    ```
-3. Can you get Retirability from the CLI?
+3. Run `temporal task-queue get-build-id-reachability -t pizza-tasks --build-id revision-yymmdd`.
+   This will return information about which whether your new Build ID is
+   available and accepting both New and Existing Workflows:
+   ```output
+         BuildId       TaskQueue            Reachability
+     revision-yymmdd  pizza-tasks  [NewWorkflows
+                                   ExistingWorkflows]
+   ```
+   You can also verify this by visiting the Web UI again. Examine
+   the `pizza-tasks` Task Queue or the "Workers" UI tab to
+   see the registered Workers and their versions. You should notice
+   a "Retirability" field indicating which of your Workers that you
+   are able to safely retire, as they are no longer registered as a
+   default or handling any existing Workflows:
+   ![Retirability field in Web UI](images/retirability.png)
 
 
 ## Part C: Add Another Worker Using Version Sets
@@ -94,7 +109,7 @@ the complete version in the `solution` subdirectory.
 	Task Queue. This is equivalent to running the following SDK code:
 
    ```go
-   c.UpdateWorkerBuildIdCompatibility(context.Background(), &client.UpdateWorkerBuildIdCompatibilityOptions{
+   client.UpdateWorkerBuildIdCompatibility(context.Background(), &client.UpdateWorkerBuildIdCompatibilityOptions{
 		TaskQueue: pizza.TaskQueueName,
 		Operation: &client.BuildIDOpAddNewCompatibleVersion{
 			BuildID:                   "revision-yymmdd+1",
@@ -112,7 +127,7 @@ the complete version in the `solution` subdirectory.
    ordinarily do this when making code changes, you can do it without changing
    anything for the sake of this example. Update the `BuildID` field from your
    `worker.Options{}` declaration to reflect the new `revision-yymmdd+1`
-   Versiom and restart your Worker once again, then re-run your Workflow
+   Version and restart your Worker once again, then re-run your Workflow
    starter. You should observe that both Worker Build IDs are compatible and
    able to process the Workflow.
 
