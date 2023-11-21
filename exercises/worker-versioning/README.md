@@ -84,6 +84,7 @@ the complete version in the `solution` subdirectory.
    a "Retirability" field indicating which of your Workers that you
    are able to safely retire, as they are no longer registered as a
    default or handling any existing Workflows:
+   
    ![Retirability field in Web UI](images/retirability.png)
 
 
