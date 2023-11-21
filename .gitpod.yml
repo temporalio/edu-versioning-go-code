@@ -23,7 +23,7 @@ tasks:
   - name: Temporal Local Development Server
     init: |
       curl -sSf https://temporal.download/cli.sh | sh -s - --dir /workspace
-	  # install tctl for backwards compat
+      # install tctl for backwards compatibility
       mkdir -p tctl_temp
       pushd tctl_temp
       curl -sL -O https://github.com/temporalio/tctl/releases/download/v1.18.0/tctl_1.18.0_linux_amd64.tar.gz
