@@ -15,7 +15,7 @@ func main() {
 	}
 	defer c.Close()
 
-	// TODO Part B: Change your worker.New() call to use a struct, workerOptions,
+	// TODO Part A: Change your worker.New() call to use a struct, workerOptions,
 	// that contains the options `BuildID` and `UseBuildIDForVersioning: true`.
 
 	w := worker.New(c, pizza.TaskQueueName, worker.Options{})

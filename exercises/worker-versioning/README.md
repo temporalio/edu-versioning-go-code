@@ -30,21 +30,29 @@ the complete version in the `solution` subdirectory.
 
 ## Part A: Assign a Build ID to Your Worker and Task Queue
 
-1. Edit the `worker/main.go` file to add a Build ID to your Worker
+1. Before enabling Worker Versioning, try running this Workflow
+   without making any further modifications. Unlike our other exercises,
+   the `practice` subdirectory contains fully working example code.
+   Run `go run worker/main.go` in one terminal to launch your Worker,
+   and `go run start/main.go` in another terminal to successfully run
+   your Workflow. This way, you can see what it's like to start using
+   Worker Versioning in an environment that's already running an
+   unversioned Worker.
+2. Edit the `worker/main.go` file to add a Build ID to your Worker
    and opt in to Worker Versioning. To do this, replace the empty
    `worker.Options{}` struct that's currently provided as an argument
    to `worker.New()` with a struct containing a `BuildID` and the
    `UseBuildIDForVersioning: true` parameter.
-2. Edit the `start/main.go` file to call
+3. Edit the `start/main.go` file to call
    `client.UpdateWorkerBuildIdCompatibility()` before starting your
    Workflow.
-3. Run a new version of your worker by running `go run worker/main.go` 
+4. Run a new version of your worker by running `go run worker/main.go` 
    in a new terminal window. You do not need to terminate your old
    worker. If you restart your workflow by running `go run start/main.go`
    again, you should see some output from the terminal window of your
    new worker. This indicates that the workflow was chosen and run by
    the new, versioned worker, and the unversioned worker was ignored.
-4. To retrieve the information about build IDs from the CLI, run
+5. To retrieve the information about build IDs from the CLI, run
    `temporal task-queue get-build-ids --task-queue pizza-tasks`. You
    should see output similar to this:
    ```output
