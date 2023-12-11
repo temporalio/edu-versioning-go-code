@@ -2,10 +2,10 @@
 
 During this exercise, you will
 
-* Define Worker Build ID Version Sets and enable Versioning on your Worker
-* Make a change to your Workflow, and redeploy an updated Worker
-* Ensure that your Workflows have switched to using the new code path
-* Decommission an old Worker
+- Run a Workflow Execution and retrieve the Event History
+- Define Worker Build ID Version Sets and enable Versioning on your Worker
+- Ensure that your Workflows have switched to using the new code path
+- Decommission an old Worker
 
 If you are running this exercise locally with a Temporal Cluster that 
 you started via the `temporal server start-dev` command, you must
