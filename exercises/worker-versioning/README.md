@@ -131,7 +131,7 @@ the complete version in the `solution` subdirectory.
 
    In practice, you should find this at least as useful as updating your
    Task Queues from the SDK.
-3. Lastly, you can now deploy a new Worker, identified by this new Build ID,
+3. Finally, you can now deploy a new Worker, identified by this new Build ID,
    and it will be able to process the same Workflows. Although you would
    ordinarily do this when making code changes, you can do it without changing
    anything for the sake of this example. Update the `BuildID` field from your
