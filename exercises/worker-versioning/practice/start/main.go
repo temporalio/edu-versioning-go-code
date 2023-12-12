@@ -28,6 +28,9 @@ func main() {
 	// 		BuildID: "revision-yymmdd",
 	// 	},
 	// })
+	// **Note:** This code would usually only need to be run once. In a production
+	// system you would not run this as part of your client, but more likely as part
+	// of your build system on initial deployment, either via the SDK or the CLI.
 
 	order := *createPizzaOrder()
 
