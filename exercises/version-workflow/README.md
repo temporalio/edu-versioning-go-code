@@ -55,7 +55,7 @@ the complete version in the `solution` subdirectory.
 7. Restart the Worker by pressing Ctrl-C in the terminal window
    from step 1 and running the `go run worker/main.go` command again
 8. Run the Workflow again: `go run start/main.go a100`
-9.  Use the Web UI to verify that the Workflow Execution from the 
+9. Use the Web UI to verify that the Workflow Execution from the 
    previous step is running before proceeding with the next part
    of this exercise.
 
