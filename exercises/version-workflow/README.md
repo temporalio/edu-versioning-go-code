@@ -23,15 +23,17 @@ the complete version in the `solution` subdirectory.
    with 10 payments, and since the Workflow in this exercise uses 
    a Timer to add a three-second delay between each payment, it 
    should complete within 30 seconds.
-4. You will now download the history of this execution in JSON 
-   format so that you can replay it in an automated test that 
-   you will develop later in this exercise. Open the Web UI (if
-   you are running a local dev cluster, it will be running at
-   http://localhost:8233), navigate to the detail page for this
-   execution, and then click  the **Download** button that appears
-   on the right side of the  page, just above the table showing the
-   Event History. Save the file as
-   `history_for_original_execution.json` in your `practice` directory.
+4. You will now download the history of this execution in JSON
+   format so that you can replay it in an automated test that you
+   will develop later in this exercise. Open the Web UI (if you are
+   running a local dev cluster, it will be running at
+   http://localhost:8233), navigate to the **Event History** section
+   of the detail page for this execution, and then click the
+   **Download** button just above the table showing the Event History.
+   In the **Download JSON** dialog, disable the
+   **Decode Event History** toggle, and then click **Download**. Save
+   the file as `history_for_original_execution.json` in your
+   `practice` directory.
    * NOTE: If you are running this exercise in GitPod, you may 
      be unable to download the file, due to the embedded browser
 	 used in that environment. In this case, run the following 
@@ -53,7 +55,7 @@ the complete version in the `solution` subdirectory.
 7. Restart the Worker by pressing Ctrl-C in the terminal window
    from step 1 and running the `go run worker/main.go` command again
 8. Run the Workflow again: `go run start/main.go a100`
-9. Use the Web UI to verify that the Workflow Execution from the 
+9.  Use the Web UI to verify that the Workflow Execution from the 
    previous step is running before proceeding with the next part
    of this exercise.
 
