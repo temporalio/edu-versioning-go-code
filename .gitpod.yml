@@ -55,7 +55,7 @@ ports:
     port: 7233
     onOpen: ignore
   - name: Temporal Web UI
-    port: 8233 # temporal UI
+    port: 8080 # custom port, as per --ui-port option above
     description: Temporal Web UI
     onOpen: ignore
     visibility: private
