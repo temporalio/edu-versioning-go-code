@@ -29,8 +29,8 @@ the complete version in the `solution` subdirectory.
    http://localhost:8233), navigate to the **Event History** section
    of the detail page for this execution, and then click the
    **Download** button just above the table showing the Event History.
-   In the **Download JSON** dialog, disable the
-   **Decode Event History** toggle, and then click **Download**. Save
+   In the **Download JSON** dialog, leave the "Encoded" option as is,
+   and then click **Download**. Save
    the file as `history_for_original_execution.json` in your
    `practice` directory.
    - NOTE: If you are running this exercise in GitPod, you may
@@ -40,7 +40,6 @@ the complete version in the `solution` subdirectory.
    ```shell
      temporal workflow show \
         --workflow-id loan-processing-workflow-customer-a100 \
-        --fields long  \
         --output json > history_for_original_execution.json
    ```
    to retrieve a copy.
