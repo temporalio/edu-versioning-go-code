@@ -40,7 +40,6 @@ the complete version in the `solution` subdirectory.
    ```shell
      temporal workflow show \
         --workflow-id loan-processing-workflow-customer-a100 \
-        --fields long  \
         --output json > history_for_original_execution.json
    ```
    to retrieve a copy.
