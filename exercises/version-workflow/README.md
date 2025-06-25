@@ -1,4 +1,4 @@
-# Exercise 1: Version the Change with the `GetVersion` API
+# Exercise 1: Version the Change with the Patching API
 
 During this exercise, you will
 
@@ -6,7 +6,7 @@ During this exercise, you will
 - Make and deploy a change that does not affect compatibility
 - Make and deploy a change that breaks compatibility, causing a non-deterministic error
 - Develop an automated test to check compatibility with previous executions
-- Use the `GetVersion` API to implement versioning for the Workflow
+- Use the Patching API to implement versioning for the Workflow
 
 Make your changes to the code in the `practice` subdirectory (look for
 `TODO` comments that will guide you to where you should make changes to
@@ -104,14 +104,14 @@ and responds with the non-deterministic error you see.
 3. Run `go test`. You should find that this fails, which confirms
    altering the execution order of the `SendThankYouToCustomer`
    Activity) breaks compatibility. In the final part of this
-   exercise, you will use the `GetVersion` API to implement
+   exercise, you will use the Patching API to implement
    versioning for your change, thereby making it compatible
    with Workflow Executions started before or after the change.
 
-## Part D: Version the Change with the `GetVersion` API
+## Part D: Version the Change with the Patching API
 
 Just above the loop, where the `ExecuteActivity` call was prior to
-the change, add the following line:
+the change, add a call to `GetVersion`:
 
 ```go
 version := workflow.GetVersion(ctx, "MovedThankYouAfterLoop", workflow.DefaultVersion, 1)
@@ -138,7 +138,7 @@ is `1`.
    bottom of the loop back to 3 seconds. This is unrelated to
    versioning, but will help you see the results more quickly.
 4. Run `go test` again. You should find it succeeds this time,
-   since you've used the `GetVersion` API to restore compatibility with
+   since you've used the Patching API to restore compatibility with
    the previous execution.
 5. Restart the Worker by pressing Ctrl-C in the terminal
    window where you started it and then running the `go run
